@@ -18,7 +18,7 @@ export default class Analyser {
     this.parent = 'parent' in destination ? destination.parent : undefined;
     if (this.parent) {
       this.parent.children?.push(this);
-    }  
+    }
   }
 
   buildNode(destination: AnalyserDestination): AnalyserNode {
@@ -31,5 +31,23 @@ export default class Analyser {
     analyserNode.connect(destinationNode);
 
     return analyserNode;
+  }
+
+  /**
+   * Fill an existing Float32Array with time-domain waveform data
+   * The array should have length equal to this.node.fftSize
+   * Values range from -1.0 to 1.0
+   * This is the preferred method for animation loops as it reuses the array
+   */
+  fillTimeDomainData(array: Float32Array<ArrayBuffer>): void {
+    // TypeScript types are overly strict here - Web Audio API accepts any Float32Array
+    this.node.getFloatTimeDomainData(array);
+  }
+
+  /**
+   * Get the buffer length (fftSize) for time-domain analysis
+   */
+  getBufferLength(): number {
+    return this.node.fftSize;
   }
 }
