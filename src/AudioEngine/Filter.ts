@@ -1,9 +1,10 @@
+import type Analyser from "./Analyser";
 import type Gain from "./Gain";
 import type Oscillator from "./Oscillator";
 
 type FilterDestination = Filter | Gain;
-type FilterParent = Filter | Gain;
-type FilterChildren = Filter | Oscillator | Gain;
+type FilterParent = Filter | Gain | Analyser;
+type FilterChildren = Filter | Oscillator | Gain | Analyser;
 
 export default class Filter {
   audioContext: AudioContext;

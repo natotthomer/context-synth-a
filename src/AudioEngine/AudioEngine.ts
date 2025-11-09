@@ -1,3 +1,4 @@
+import Analyser from "./Analyser";
 import Filter from "./Filter";
 import Gain from "./Gain";
 import Oscillator from "./Oscillator";
@@ -8,10 +9,12 @@ class AudioEngine {
   mainVolume: Gain;
   filter: Filter;
   oscillator: Oscillator;
+  analyser: Analyser;
 
   constructor () {
     this.audioContext = this._buildAudioContext();
-    this.mainVolume = new Gain(this.audioContext.destination, this.audioContext);
+    this.analyser = new Analyser(this.audioContext.destination, this.audioContext);
+    this.mainVolume = new Gain(this.analyser, this.audioContext);
     this.filter = new Filter(this.mainVolume, this.audioContext);
     this.oscillator = new Oscillator(this.filter, this.audioContext);
   }
