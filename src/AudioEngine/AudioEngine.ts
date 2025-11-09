@@ -12,8 +12,8 @@ class AudioEngine {
   constructor () {
     this.audioContext = this._buildAudioContext();
     this.mainVolume = new Gain(this.audioContext.destination, this.audioContext);
-    this.filter = new Filter(this.mainVolume.node, this.audioContext);
-    this.oscillator = new Oscillator(this.filter.node, this.audioContext);
+    this.filter = new Filter(this.mainVolume, this.audioContext);
+    this.oscillator = new Oscillator(this.filter, this.audioContext);
   }
 
   _buildAudioContext(): AudioContext {
