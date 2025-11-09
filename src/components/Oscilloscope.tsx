@@ -1,12 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
-import { useAudioEngine } from "./AudioEngine/useAudioEngine";
+import { useEffect, useRef } from 'react';
+import { useAudioEngine } from "../AudioEngine/useAudioEngine";
 
-export function UI() {
+export function Oscilloscope() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameRef = useRef<number | undefined>(undefined);
   const { audioEngine } = useAudioEngine();
-
-  const [currentTime, setCurrentTime] = useState<number>(audioEngine.audioContext.currentTime);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -66,24 +64,7 @@ export function UI() {
     };
   }, [audioEngine]);
 
-  const handleClick = () => {
-    if (audioEngine.audioContext.state === 'suspended') {
-      audioEngine.audioContext.resume();
-    }
-    setCurrentTime(audioEngine.audioContext.currentTime);
-  };
-
-  const handleFreq = () => {
-    audioEngine.oscillator.setValueAtTime(1000, 1);
-  };
-
   return (
-    <div>
-      hello {currentTime}
-
-      <button onClick={handleClick}></button>
-      <button onClick={handleFreq}>freq</button>
-      <canvas ref={canvasRef} style={{width: 800, height: 200}} width={800} height={200} id='oscilloscope'/>
-    </div>
+    <canvas ref={canvasRef} style={{width: 800, height: 200}} width={800} height={200} id='oscilloscope'/>
   );
 }
