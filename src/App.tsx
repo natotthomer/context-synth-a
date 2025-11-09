@@ -1,12 +1,12 @@
 import './App.css'
 import { AudioEngineProvider } from './AudioEngine/AudioEngineProvider'
-import { Child } from './Child'
+import { UI } from './components/UI'
 
 function App() {
 
   return (
     <AudioEngineProvider>
-      <Child />
+      <UI />
     </AudioEngineProvider>
   )
 }

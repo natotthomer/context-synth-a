@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { useAudioEngine } from "./AudioEngine/useAudioEngine";
+import { useAudioEngine } from "../AudioEngine/useAudioEngine";
+import { Oscilloscope } from './Oscilloscope';
 
-export function Child() {
+export function UI() {
   const { audioEngine } = useAudioEngine();
 
   const [currentTime, setCurrentTime] = useState<number>(audioEngine.audioContext.currentTime);
@@ -23,6 +24,8 @@ export function Child() {
 
       <button onClick={handleClick}></button>
       <button onClick={handleFreq}>freq</button>
+      <Oscilloscope />
+      {/* <canvas ref={canvasRef} style={{width: 800, height: 200}} width={800} height={200} id='oscilloscope'/> */}
     </div>
   );
 }
