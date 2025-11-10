@@ -1,8 +1,4 @@
-import type Filter from "./Filter";
-import type Gain from "./Gain";
-
-type OscillatorDestination = Filter | Gain;
-type OscillatorParent = Filter | Gain;
+import type { OscillatorDestination, OscillatorParent } from "./types";
 
 export default class Oscillator {
   audioContext: AudioContext;

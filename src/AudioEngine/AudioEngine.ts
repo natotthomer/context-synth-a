@@ -1,7 +1,8 @@
 import Analyser from "./Analyser";
 import Filter from "./Filter";
 import Gain from "./Gain";
-import Oscillator from "./Oscillator";
+import Oscillator from "./Oscillators/Oscillator";
+import PeriodicWaveOscillator from "./Oscillators/PeriodicWaveOscillator";
 import type { AudioDestination } from "./types";
 
 class AudioEngine {

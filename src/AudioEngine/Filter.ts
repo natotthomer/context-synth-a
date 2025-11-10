@@ -1,6 +1,6 @@
 import type Analyser from "./Analyser";
 import type Gain from "./Gain";
-import type Oscillator from "./Oscillator";
+import type Oscillator from "./Oscillators/Oscillator";
 
 type FilterDestination = Filter | Gain;
 type FilterParent = Filter | Gain | Analyser;

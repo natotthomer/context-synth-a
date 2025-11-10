@@ -1,6 +1,6 @@
 import type Analyser from "./Analyser";
 import type Filter from "./Filter";
-import type Oscillator from "./Oscillator";
+import type Oscillator from "./Oscillators/Oscillator";
 
 type GainDestination = Gain | Filter | Analyser | AudioNode;
 type GainParent = Gain | Filter | Analyser;
