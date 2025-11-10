@@ -1,6 +1,6 @@
 import type Filter from "./Filter";
 import type Gain from "./Gain";
-import type Oscillator from "./Oscillator";
+import type Oscillator from "./Oscillators/Oscillator";
 
 type AnalyserDestination = Filter | Gain | AudioNode;
 type AnalyserParent = Filter | Gain | Analyser;
@@ -24,7 +24,7 @@ export default class Analyser {
   buildNode(destination: AnalyserDestination): AnalyserNode {
     const analyserNode = this.audioContext.createAnalyser();
     // Configure for time-domain analysis
-    analyserNode.fftSize = 2048; // Higher fftSize gives more data points for smoother waveform
+    analyserNode.fftSize = 512; // Higher fftSize gives more data points for smoother waveform and more cycles visible
     analyserNode.smoothingTimeConstant = 0.8; // Smoothing factor (0-1), 0.8 provides nice smoothing
     // analyserNode.connect(destination.node);
     const destinationNode = 'node' in destination ? destination.node : destination;

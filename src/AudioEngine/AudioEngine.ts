@@ -9,6 +9,7 @@ class AudioEngine {
   audioContext: AudioContext;
   mainVolume: Gain;
   filter: Filter;
+  mixerChannel: Gain;
   oscillator: Oscillator;
   analyser: Analyser;
 
@@ -17,7 +18,8 @@ class AudioEngine {
     this.analyser = new Analyser(this.audioContext.destination, this.audioContext);
     this.mainVolume = new Gain(this.analyser, this.audioContext);
     this.filter = new Filter(this.mainVolume, this.audioContext);
-    this.oscillator = new Oscillator(this.filter, this.audioContext);
+    this.mixerChannel = new Gain(this.filter, this.audioContext)
+    this.oscillator = new PeriodicWaveOscillator(this.mixerChannel, this.audioContext);
   }
 
   _buildAudioContext(): AudioContext {

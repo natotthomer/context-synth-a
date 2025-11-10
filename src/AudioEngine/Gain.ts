@@ -5,6 +5,10 @@ import type Oscillator from "./Oscillators/Oscillator";
 type GainDestination = Gain | Filter | Analyser | AudioNode;
 type GainParent = Gain | Filter | Analyser;
 type GainChildren = Gain | Filter | Oscillator | Analyser;
+type GainOptions = {
+  inverse?: boolean;
+  initialGain?: number;
+}
 
 export default class Gain {
   audioContext: AudioContext;
@@ -12,10 +16,12 @@ export default class Gain {
   value: number;
   parent?: GainParent;
   children?: GainChildren[];
+  options?: GainOptions;
 
-  constructor(destination: GainDestination, audioContext: AudioContext) {
+  constructor(destination: GainDestination, audioContext: AudioContext, options?: GainOptions) {
     this.audioContext = audioContext;
-    this.value = 1;
+    const initialGain = options?.initialGain ?? 1;
+    this.value = options?.inverse ? initialGain * -1 : initialGain;
     this.node = this.buildNode(destination);
     this.parent = 'parent' in destination ? destination.parent : undefined;
     if (this.parent) {
